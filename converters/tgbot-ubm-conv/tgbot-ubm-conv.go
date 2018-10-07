@@ -48,6 +48,11 @@ func (p *Plugin) GetManifest() types.Manifest {
 	return manifest
 }
 
+// Telegram constants
+const (
+	APIVersion = "4.1"
+)
+
 func (p *Plugin) Init(filename string, configPath string) {
 	// load toml config
 	_, err := toml.DecodeFile(configPath+"/"+filename+".toml", &p.config)
@@ -127,7 +132,7 @@ func (p *Plugin) Start() {
 			Formats: []types.Format{
 				{
 					API:      "telegram-bot-api",
-					Version:  "latest",
+					Version:  ">=3",
 					Method:   "apiresponse",
 					Protocol: "http",
 				},
